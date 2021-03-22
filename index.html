@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>Shinner</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.js"></script>
+
+    <script type="text/javascript" src="pe.shiner/jquery.pixelentity.shiner.min.js"></script>
+    <script type="text/javascript" src="jpreLoader.min.js"></script>
+</head>
+<body>
+    <div class="header__logo">
+        <div class="peShiner">
+            <a href="/anasayfa.html">
+                <img src="lokman-logo.svg" class="img-fluid header_logo_img" style="max-width:none;" />
+            </a>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            var items = $(".header__logo");
+            var shiners = [];
+            var idx = 0;
+            var max = items.length;
+            var active = 0;
+
+            function getShiner() {
+                var jthis = $(this);
+                jthis.attr("id", idx++);
+                shiners.push(jthis.find(".peShiner").peShiner({ api: true, paused: true, reverse: true, repeat: 1 }));
+            }
+
+            items.each(getShiner);
+            idx = active = parseInt(items.attr("id"), 10);
+            return shiners[idx].resume();
+        });
+    </script>
+</body>
+</html>
